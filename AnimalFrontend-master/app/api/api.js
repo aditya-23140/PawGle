@@ -3,7 +3,7 @@ import axios from "axios";
 const apiUrl = "/choreo-apis/awbo/backend/rest-api-be2/v1.0";
 
 const api = axios.create({
-  baseURL: "http://localhost:8000/",
+  baseURL: process.env.NEXT_PUBLIC_BACKEND_API_PORT || "http://localhost:8000/",
 });
 
 // Request interceptor to include the access token
@@ -38,7 +38,7 @@ api.interceptors.response.use(
 
         // Attempt to refresh the token
         const response = await axios.post(
-          "http://localhost:8000/api/token/refresh/",
+          `${process.env.NEXT_PUBLIC_BACKEND_API_PORT}/api/token/refresh/`,
           {
             refresh: refreshToken,
           }
