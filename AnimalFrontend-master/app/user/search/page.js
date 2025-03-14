@@ -11,7 +11,14 @@ export default function SearchPetForm() {
   const [matches, setMatches] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [searchPerformed, setSearchPerformed] = useState(false);
+  const [backgroundHeight, setBackgroundHeight] = useState(0);
   const BACKEND_API_PORT = process.env.NEXT_PUBLIC_BACKEND_API_PORT;
+
+  useEffect(() => {
+    setBackgroundHeight(
+      Math.min(window.innerHeight, document.body.scrollHeight)
+    );
+  }, []);
 
   const handleFileChange = (e) => {
     setFiles(Array.from(e.target.files));
@@ -64,7 +71,7 @@ export default function SearchPetForm() {
 
   return (
     <>
-      <CirclesBackground height={window.innerHeight} />
+      <CirclesBackground height={backgroundHeight} />
       <div className="min-h-screen bg-[var(--background)] flex flex-col justify-start overflow-hidden">
         <Navbar />
 

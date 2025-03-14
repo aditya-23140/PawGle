@@ -12,6 +12,7 @@ const User = () => {
   const [pets, setPets] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [windowWidth, setWindowWidth] = useState(0);
 
   const BACKEND_API_PORT = process.env.NEXT_PUBLIC_BACKEND_API_PORT;
 
@@ -40,6 +41,7 @@ const User = () => {
     };
 
     fetchProfile();
+    setWindowWidth(document.body.scrollHeight);
   }, []);
 
   const deletePet = async (petId) => {
@@ -85,7 +87,7 @@ const User = () => {
 
   return (
     <>
-      <CirclesBackground height={document.body.scrollHeight} />
+      <CirclesBackground height={windowWidth} />
       <div className="min-h-screen flex flex-col bg-gradient-to-b from-[var(--background2)] to-[var(--backgroundColor)] text-white">
         <Navbar />
         <main className="flex flex-col md:flex-row p-6 space-x-0 md:space-x-6 mt-20">
