@@ -9,7 +9,12 @@ const api = axios.create({
 // Request interceptor to include the access token
 api.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem("accessToken"); // Directly accessing the access token
+    const token =
+      typeof window !== "undefined"
+        ? localStorage.getItem("accessToken")
+        : null;
+    // Directly accessing the access token
+    console.log("Adding Authorization Header:", token);
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -31,7 +36,10 @@ api.interceptors.response.use(
       originalRequest._retry = true;
 
       try {
-        const refreshToken = localStorage.getItem("refreshToken"); // Directly accessing the refresh token
+        const refreshToken =
+          typeof window !== "undefined"
+            ? localStorage.getItem("refreshToken")
+            : null; // Directly accessing the refresh token
         if (!refreshToken) {
           return Promise.reject(error);
         }
