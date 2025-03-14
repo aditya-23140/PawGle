@@ -74,7 +74,7 @@ export default function AddPetForm() {
     }
 
     try {
-      const response = await fetch(`${BACKEND_API_PORT}api/auth/pets/add/`, {
+      const response = await fetch(`${BACKEND_API_PORT}/api/auth/pets/add/`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
