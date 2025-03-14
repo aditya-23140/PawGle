@@ -29,6 +29,7 @@ export default function EditPetForm() {
 
   useEffect(() => {
     setBackgroundHeight(window.innerHeight + 300);
+
     const storedPet = JSON.parse(localStorage.getItem("petEditData"));
     if (storedPet) {
       setPet(storedPet);
@@ -125,10 +126,10 @@ export default function EditPetForm() {
 
   return (
     <>
-      <CirclesBackground height={window.innerHeight + 200} />
+      <CirclesBackground height={backgroundHeight} />
       <div className="min-h-screen bg-[var(--background)] flex flex-col justify-start">
         <Navbar />
-        <div className="flex items-center justify-center py-16 px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-center py-16 px-4 sm:px-6 lg:px-8 mt-16">
           <div className="max-w-lg w-full bg-[var(--background2)] rounded-2xl shadow-lg hover:shadow-xl overflow-hidden transform transition-all hover:scale-105 duration-500 ease-in-out">
             <div className="px-10 py-12">
               <h1 className="text-center text-3xl font-extrabold text-[var(--textColor)] mb-6 tracking-tight hover:tracking-wide transition-all duration-300">
