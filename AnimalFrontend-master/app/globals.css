@@ -64,6 +64,12 @@
   /* Muted Brown */
   --c3: #00000051;
   /* Transparent Black */
+  --c1: #bdbdbd;
+  /* Gray */
+  --c2: #ef9090;
+  /* Light Red */
+  --c4: #e86363;
+  /* Red */
 }
 
 :root[data-theme="light"] .shadow-lg {

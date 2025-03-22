@@ -24,14 +24,17 @@ const PawGle = () => {
   const [userInfoExists, setUserInfoExists] = useState(false);
   const [usersCount, setUsersCount] = useState(0);
   const [petsCount, setPetsCount] = useState(0);
-  const [isDarkMode, setIsDarkMode] = useState(true);
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    return localStorage.getItem("theme") === "dark";
+  });
 
   useEffect(() => {
-    // Apply theme based on state
     if (isDarkMode) {
       document.documentElement.setAttribute("data-theme", "dark");
+      localStorage.setItem("theme", "dark");
     } else {
       document.documentElement.setAttribute("data-theme", "light");
+      localStorage.setItem("theme", "light");
     }
   }, [isDarkMode]);
 

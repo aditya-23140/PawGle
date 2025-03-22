@@ -9,24 +9,27 @@ import Image from "next/image";
 
 export default function Navbar() {
   const [showDropdown, setShowDropdown] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(true);
-
-  const toggleDropdown = (event) => {
-    event.stopPropagation(); // Prevent the click from bubbling up
-    setShowDropdown((prev) => !prev);
-  };
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    return localStorage.getItem("theme") === "dark";
+  });
 
   useEffect(() => {
-    // Apply theme based on state
     if (isDarkMode) {
       document.documentElement.setAttribute("data-theme", "dark");
+      localStorage.setItem("theme", "dark");
     } else {
       document.documentElement.setAttribute("data-theme", "light");
+      localStorage.setItem("theme", "light");
     }
   }, [isDarkMode]);
 
   const toggleTheme = () => {
     setIsDarkMode((prev) => !prev);
+  };
+
+  const toggleDropdown = (event) => {
+    event.stopPropagation(); // Prevent the click from bubbling up
+    setShowDropdown((prev) => !prev);
   };
 
   useEffect(() => {
